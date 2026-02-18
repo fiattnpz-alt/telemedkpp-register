@@ -26,62 +26,85 @@
         }
 
         .choice-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
             padding: 3rem 2rem;
             flex: 1;
             min-width: 300px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative top edge glow */
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .choice-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-            border-color: var(--primary-color, #1A3A5E);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(56, 189, 248, 0.15);
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .choice-card:hover::before {
+            opacity: 1;
         }
 
         .choice-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            width: 90px;
+            height: 90px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.15);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color, #1A3A5E);
-            transition: transform 0.3s ease;
+            margin-bottom: 1.8rem;
+            color: var(--primary, #38bdf8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .choice-card:hover .choice-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: var(--primary-color, #1A3A5E);
+            transform: scale(1.1);
+            background: var(--gradient-primary, linear-gradient(135deg, #38bdf8 0%, #818cf8 100%));
+            border-color: transparent;
             color: white;
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
         }
 
         .choice-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-color, #333);
+            margin-bottom: 0.75rem;
+            color: var(--text-main, #f8fafc);
         }
 
         .choice-desc {
             font-size: 0.95rem;
-            color: #666;
-            line-height: 1.5;
+            color: var(--text-muted, #94a3b8);
+            line-height: 1.6;
         }
 
         /* Mobile specific adjustments */
@@ -92,7 +115,7 @@
             }
 
             .choice-card {
-                padding: 2rem;
+                padding: 2.5rem 1.5rem;
             }
         }
     </style>
@@ -119,12 +142,12 @@
     </header>
 
     <main>
-        <div class="page-header">
+        <div class="page-header" style="margin-top: 100px;">
             <div class="container">
                 <span class="badge">🏥 ยินดีต้อนรับ</span>
-                <h1 class="page-header-title">ระบบบริการการแพทย์ทางไกล</h1>
-                <p class="page-header-desc">
-                    กรุณาเลือกประเภทการให้บริการที่ท่านต้องการ
+                <h1 class="page-header-title" style="font-size: 25px;">ระบบบริการการแพทย์ทางไกล</h1>
+                <p class="page-header-desc" style="color: #8f8e8e;">
+                    กรุณาเลือกประเภทการให้บริการที่ท่านต้องการ :
                 </p>
             </div>
         </div>
@@ -168,6 +191,20 @@
                 </h3>
                 <p>บริการการแพทย์ทางไกล พัฒนาโดยโรงพยาบาลชุมชนเทศบาลเมืองกำแพงเพชร
                     เพื่อการเข้าถึงบริการสาธารณสุขที่สะดวกและรวดเร็ว</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/kppmu" class="social-icon" title="Facebook">
+                        <i data-lucide="facebook"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@kppmuch?_t=ZS-8zi6FyEyffr&_r=1" target="_blank"
+                        style="text-decoration: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24"
+                            viewBox="0 0 24 24" style="fill:#acacac;">
+                            <path
+                                d="M12.53,2c0.11,4.95,3.31,8.02,8.12,8.06V14.1c-2.81-0.12-5.46-1.39-7.31-3.41l0,8.16c0,4.14-3.36,7.5-7.5,7.5 c-4.14,0-7.5-3.36-7.5-7.5c0-4.14,3.36-7.5,7.5-7.5c0.5,0,0.98,0.05,1.44,0.15l0,4.2c-0.45-0.1-0.92-0.15-1.44-0.15 c-1.82,0-3.3,1.48-3.3,3.3c0,1.82,1.48,3.3,3.3,3.3c1.82,0,3.3-1.48,3.3-3.3l0-14.82L12.53,2z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <div class="footer-links">
@@ -176,6 +213,8 @@
                     <li><a href="index.html">หน้าแรก</a></li>
                     <li><a href="register.html">ลงทะเบียนใหม่</a></li>
                     <li><a href="request.html">ขอรับยาเดิม</a></li>
+                    <li><a href="terms.html">ข้อตกลงและเงื่อนไข</a></li>
+                    <li><a href="privacy.html">นโยบายความเป็นส่วนตัว</a></li>
                 </ul>
             </div>
 
