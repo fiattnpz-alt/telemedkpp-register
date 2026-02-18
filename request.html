@@ -202,7 +202,7 @@
                     </button>
                     <!-- IMPORTANT: Replace this with your Web App URL -->
                     <input type="hidden" id="webAppUrl"
-                        value="https://script.google.com/macros/s/AKfycbzE9agpHE-1NGYvJBeVO6p9utWwAu6ibQVx3jrxAY-yInrRTZIpili3mGYz-c1LRLHe/exec">
+                        value="https://script.google.com/macros/s/AKfycbzKa0kyIBA1hboV-VXPA87quqqGlxj8XA_8Lss904NJtmzaa13XuM4AJQV5FXj3Yh5V/exec">
                     <!-- LINE User ID (Hidden) -->
                     <input type="hidden" id="userId" name="userId" value="">
                     <!-- LIFF ID Configuration -->
@@ -296,19 +296,12 @@
 
             const webAppUrl = document.getElementById('webAppUrl').value;
 
-            // Using POST with action='search' as defined in Code.gs
+            // Using POST with action='search'
             fetch(webAppUrl, {
                 method: 'POST',
-                mode: 'no-cors', // Important: no-cors means we CANNOT read the response directly if it was opaque.
-                // BUT wait, Code.gs returns JSON. 'no-cors' will BLOCK accessing the response body in frontend JS.
-                // To READ the response (search result), we MUST NOT use 'no-cors', OR we must use JSONP (difficult in GAS) or proper CORS.
-                // GAS Web App *automatically* handles CORS if we follow redirects.
-                // However, 'no-cors' is typically used for *fire-and-forget* (write only).
-                // FOR SEARCH, WE NEED TO READ THE RESPONSE.
-                // SO we MUST REMOVE 'mode: no-cors' and handle the redirect.
-                // FETCH with GAS usually works fine without 'no-cors' IF the return is plain JSON and permissions are 'Anyone'.
+                redirect: 'follow', // Important: GAS Web App redirects to the content
                 headers: {
-                    'Content-Type': 'text/plain;charset=utf-8' // GAS sometimes prefers text/plain to avoid preflight
+                    'Content-Type': 'text/plain;charset=utf-8' // Use text/plain to avoid CORS preflight options check
                 },
                 body: JSON.stringify({ action: 'search', idCard: idCard })
             })
