@@ -237,8 +237,37 @@
     </footer>
 
     <script src="script.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
         lucide.createIcons();
+
+        // LIFF Relay Handler for index.html
+        async function initializeLiffRelay() {
+            try {
+                // Initialize LIFF to complete the login flow and establish session
+                await liff.init({ liffId: "2009097162-mihlRr3t" });
+
+                if (liff.isLoggedIn()) {
+                    // If we are logged in, check if there is a pending redirect target
+                    const target = localStorage.getItem('login_redirect_target');
+                    if (target) {
+                        console.log('Redirecting to target:', target);
+
+                        // Validate target is on same origin for security
+                        if (target.startsWith(window.location.origin)) {
+                            // Clear target to prevent loops and Redirect
+                            localStorage.removeItem('login_redirect_target');
+                            window.location.replace(target);
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error('LIFF Relay Init Error:', err);
+            }
+        }
+
+        // Run immediately
+        initializeLiffRelay();
     </script>
 </body>
 
