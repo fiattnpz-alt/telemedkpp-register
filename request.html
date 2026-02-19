@@ -275,7 +275,9 @@
                     const profile = await liff.getProfile();
                     document.getElementById('userId').value = profile.userId;
                 } else {
-                    liff.login({ redirectUri: window.location.href });
+                    // Fix: Ensure redirect back to this page (request.html)
+                    const destinationUrl = new URL(window.location.href);
+                    liff.login({ redirectUri: destinationUrl.origin + destinationUrl.pathname });
                 }
             } catch (err) {
                 console.error('LIFF Initialization failed', err);
