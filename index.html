@@ -12,24 +12,6 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Relay Script: Checks if user needs to be redirected back to a specific page after LINE Login
-        (function () {
-            try {
-                const target = localStorage.getItem('login_redirect_target');
-                if (target) {
-                    console.log('Found redirect target:', target);
-                    localStorage.removeItem('login_redirect_target'); // Clear immediately
-                    // Only redirect if it's the same site (security)
-                    if (target.startsWith(window.location.origin)) {
-                        window.location.replace(target);
-                    }
-                }
-            } catch (e) {
-                console.error('Redirect Logic Error:', e);
-            }
-        })();
-    </script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         .choice-container {

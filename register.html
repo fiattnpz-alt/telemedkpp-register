@@ -269,15 +269,23 @@
                 if (liff.isLoggedIn()) {
                     const profile = await liff.getProfile();
                     document.getElementById('userId').value = profile.userId;
+                    // Clear any redirect target since we are here and logged in
+                    localStorage.removeItem('login_redirect_target');
                 } else {
-                    // Workaround: Store current page and redirect to index.html (Main Callback)
-                    localStorage.setItem('login_redirect_target', window.location.href);
-                    const destinationUrl = new URL(window.location.href);
-                    // Redirect to index.html which must be the registered Callback URL
-                    liff.login({ redirectUri: destinationUrl.origin + '/index.html' });
+                    // Start Login Flow
+                    // Check if we are already in a redirect loop to avoid infinite spinning
+                    if (!sessionStorage.getItem('is_logging_in')) {
+                        sessionStorage.setItem('is_logging_in', 'true');
+                        localStorage.setItem('login_redirect_target', window.location.href);
+                        // Force redirect to current page to ensure callback matches
+                        // If rich menu sends to root, let's just login there
+                        liff.login({ redirectUri: window.location.href });
+                    }
                 }
             } catch (err) {
                 console.error('LIFF Initialization failed', err);
+            } finally {
+                sessionStorage.removeItem('is_logging_in');
             }
         }
 
