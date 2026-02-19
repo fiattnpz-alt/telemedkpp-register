@@ -270,9 +270,11 @@
                     const profile = await liff.getProfile();
                     document.getElementById('userId').value = profile.userId;
                 } else {
-                    // Fix: Ensure redirect back to this page (register.html)
+                    // Workaround: Store current page and redirect to index.html (Main Callback)
+                    localStorage.setItem('login_redirect_target', window.location.href);
                     const destinationUrl = new URL(window.location.href);
-                    liff.login({ redirectUri: destinationUrl.origin + destinationUrl.pathname });
+                    // Redirect to index.html which must be the registered Callback URL
+                    liff.login({ redirectUri: destinationUrl.origin + '/index.html' });
                 }
             } catch (err) {
                 console.error('LIFF Initialization failed', err);
