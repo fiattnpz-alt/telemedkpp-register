@@ -270,7 +270,7 @@
                     const profile = await liff.getProfile();
                     document.getElementById('userId').value = profile.userId;
                 } else {
-                    liff.login();
+                    liff.login({ redirectUri: window.location.href });
                 }
             } catch (err) {
                 console.error('LIFF Initialization failed', err);
