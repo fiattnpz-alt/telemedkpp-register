@@ -154,7 +154,7 @@
                         <textarea class="form-control" name="objectives" placeholder="" required rows="3"></textarea>
                     </div>
 
-                    <div class="form-row" style="align-items: end;">
+                    <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">
                                 ประสงค์จะรับใบรับรองแพทย์หรือไม่ <span class="required">*</span></label>
@@ -165,14 +165,24 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="checkbox-wrapper">
-                                <input type="checkbox" name="needMedicalCert" value="ต้องการ">
-                                <span class="checkbox-text">
-                                    ข้าพเจ้ายินยอมให้ข้อมูลและตกลงรับการรักษาผ่านระบบ Telemedicine ตาม
-                                    <a href="terms.html">ข้อตกลงและเงื่อนไข</a>
-                                </span>
-                            </label>
+                            <label class="form-label">
+                                ประสงค์จะให้ส่งยาทางไปรษณีย์หรือไม่ <span class="required">*</span></label>
+                            <select class="form-control" name="deliveryType" required>
+                                <option value="" disabled selected>เลือก</option>
+                                <option value="รับ">รับ</option>
+                                <option value="ไม่รับ">ไม่รับ</option>
+                            </select>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" name="needMedicalCert" value="ต้องการ">
+                            <span class="checkbox-text">
+                                ข้าพเจ้ายินยอมให้ข้อมูลและตกลงรับการรักษาผ่านระบบ Telemedicine ตาม
+                                <a href="terms.html">ข้อตกลงและเงื่อนไข</a>
+                            </span>
+                        </label>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-lg btn-submit">
@@ -181,7 +191,7 @@
                     <!-- IMPORTANT: Replace this with your Web App URL -->
                     <!-- IMPORTANT: Replace this with your Web App URL -->
                     <input type="hidden" id="webAppUrl"
-                        value="https://script.google.com/macros/s/AKfycbzKa0kyIBA1hboV-VXPA87quqqGlxj8XA_8Lss904NJtmzaa13XuM4AJQV5FXj3Yh5V/exec">
+                        value="https://script.google.com/macros/s/AKfycbzbW_oKmSwl_QX99WfLticBwzwH0_yLz8bsrzJIRedWKXx-zmrQtBPEmGR2z5ZRkQy9/exec">
                     <!-- LINE User ID (Hidden) -->
                     <input type="hidden" id="userId" name="userId" value="2009097162-mihlRr3t">
                     <!-- LIFF ID Configuration -->
