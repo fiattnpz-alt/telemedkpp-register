@@ -157,7 +157,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">
-                                ประสงค์จะรับใบรับรองแพทย์หรือไม่ <span class="required">*</span></label>
+                                ประสงค์จะรับใบรับรองแพทย์หรือไม่<span class="required">*</span></label>
                             <select class="form-control" name="serviceType" required>
                                 <option value="" disabled selected>เลือก</option>
                                 <option value="รับ">รับ</option>
@@ -166,11 +166,13 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">
-                                ประสงค์จะให้ส่งยาทางไปรษณีย์หรือไม่ <span class="required">*</span></label>
+                                ประสงค์จะให้ส่งยาทางไปรษณีย์หรือไม่
+                                (ซึ่งจะมีค่าบริการตามน้ำหนักยาและระยะทางไม่สามารถเบิกเงินคืนได้) <span
+                                    class="required">*</span></label>
                             <select class="form-control" name="deliveryType" required>
                                 <option value="" disabled selected>เลือก</option>
-                                <option value="รับ">รับ</option>
-                                <option value="ไม่รับ">ไม่รับ</option>
+                                <option value="ต้องการ">ต้องการ (จะมีเจ้าหน้าที่ติดต่อกลับ)</option>
+                                <option value="ไม่ต้องการ">ไม่ต้องการ (รับเอง)</option>
                             </select>
                         </div>
                     </div>
